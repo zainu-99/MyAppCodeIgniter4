@@ -1,4 +1,11 @@
+
 <!DOCTYPE html>
+<?php
+    if(strpos(base_url(), 'public') !== false)
+        $public="";
+    else  
+        $public="public/";
+?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,14 +13,13 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Dashboar Admin</title>
-  <link rel="stylesheet" href="<?=base_url('AdminLTE');?>/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="<?=base_url('AdminLTE');?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?=base_url('AdminLTE');?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link href="{{ asset('') }}/css/colorbox.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?=base_url('AdminLTE');?>/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/dist/css/adminlte.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> 
-  <script src="<?=base_url('AdminLTE');?>/plugins/jquery/jquery.min.js"></script>
+  <script src="<?=base_url($public.'AdminLTE');?>/plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini" style="visibility: hidden">
 <div class="wrapper" >
@@ -65,17 +71,17 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img onerror="this.onerror=null;this.src='<?=base_url();?>/AdminLTE/dist/img/user.png';" src="<?=base_url(Session()->get('avatar'));?>" class="img-circle elevation-2" alt="User Image">
+          <img onerror="this.onerror=null;this.src='<?=base_url().'/'.$public;?>/AdminLTE/dist/img/user.png';" src="<?=base_url($public.Session()->get('avatar'));?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <span  class="text-light" ><strong>ID :</strong> <?=Session()->get('userid')?><br/><strong>Name :</strong> <?=Session()->get('name')?></span>
         </div>
       </div>
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">          
-         <?php $this->include('layout/navmenu')?>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">        
+         <?=$this->include('layout/navmenu')?>
           <li class="nav-item">
-            <a href="<?=base_url()."/login/logout"?>"  class="nav-link">
+            <a href="<?=base_url().$public."/login/logout"?>"  class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout           
@@ -112,12 +118,12 @@
    Copyright &copy; 2019 | <strong>Framework by Deretcode.com</strong>
   </footer>
 </div>
-<script src="<?=base_url('AdminLTE');?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?=base_url('AdminLTE');?>/dist/js/adminlte.min.js"></script>
-<script src="<?=base_url('AdminLTE');?>/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?=base_url('AdminLTE');?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?=base_url('AdminLTE');?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?=base_url('AdminLTE');?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/dist/js/adminlte.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?=base_url($public.'AdminLTE');?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script>
     $("input[type='checkbox']").each(function(e){$(this).on('change', function(){this.value = this.checked ? 1 : 0;}).change();});
     $(".item-menu").each(function( index ) {if((window.location.href).includes($( this ).attr('href')))$( this ).addClass("active" );});

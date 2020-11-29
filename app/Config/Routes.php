@@ -31,9 +31,20 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index',['filter' => 'auth']);
-$routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
 $routes->get('/login', 'Login::index');
 $routes->get('/login/auth', 'Login::auth');
+use App\Models\RoleModel;
+$model = new RoleModel();
+$list = $model->select('roles.url,roles.controller,roles.name,user_role.id')->where('url is not',null)->join('user_role','user_role.id_role=roles.id','left')->where('user_role.allow_view',1)->join('users','users.id=user_role.id_user','left')->get()->getResult();
+foreach($list as $item)
+{
+    $routes->get($item->url.'', $item->controller.'::index');
+    $routes->add($item->url.'/add', $item->controller.'::add');
+    $routes->add($item->url.'/edit/{id}', $item->controller.'::edit');
+    $routes->add($item->url.'/delete/{id}', $item->controller.'::delete');
+    $routes->add($item->url.'/print', $item->controller.'::print');
+    $routes->add($item->url.'/custom', $item->controller.'::custom');
+}
 
 /**
  * --------------------------------------------------------------------

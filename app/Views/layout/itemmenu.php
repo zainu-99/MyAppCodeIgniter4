@@ -1,18 +1,21 @@
 <?php 
-if($treeview)
+if($options["treeview"])
 { ?>
     <li class="nav-item has-treeview menu-close">
         <a href="#" class="nav-link ">
-            <?=$itemmenu->icon?>
+            <?=$options["itemmenu"]->icon?>
           <p>
-            <?=$itemmenu->menu_text?>
+            <?=$options["itemmenu"]->menu_text?>
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
-            <?php foreach($itemmenu->Menus as $key=>$childrenMenus){
-                $this->include('layout/itemmenu',['itemmenu' => $childrenMenus],['treeview' => (count($childrenMenus->Menus)>0)]);            
-            ?>
+           <?php
+            foreach($options["itemmenu"]->child as $key=>$item)
+            {
+                echo $this->include('layout/itemmenu',['itemmenu' => $item,'treeview' => (count($item->child)>0)],true);       
+            }
+           ?>
         </ul>
     </li>
 <?php
@@ -21,9 +24,9 @@ else
 {
 ?>
     <li class="nav-item">
-        <a href="{{ url('').$itemmenu->role_url }}" class="nav-link item-menu">
-            <?=$itemmenu->icon?>
-                <p><?=$itemmenu->menu_text?></p>
+        <a href="<?=base_url().$options["itemmenu"]->role_url?>" class="nav-link item-menu">
+            <?=$options["itemmenu"]->icon?>
+            <p><?=$options["itemmenu"]->menu_text?></p>
           </a>
     </li>
 <?php

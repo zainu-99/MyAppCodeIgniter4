@@ -5,15 +5,15 @@ class MenuModel extends Model
 {
     protected $table = "menu_app";
 
-    public function Menus()
+    public function Recursion($idParent)
     {
-        $id = Session()->get("id");
-        return $this->hasMany(Menu::class,'menu_app_id')->select('menu_app.*','roles.name as role_name','roles.url as role_url')->leftJoin('roles','menu_app.id_role','roles.id')->leftJoin('user_role','user_role.id_role','roles.id')->leftJoin('users','user_role.id_user','users.id')->where('users.id',$id)->where('user_role.allow_view',1)->orderBy('order_sort');
-    }
-
-    public function childrenMenus()
-    {
-        $id = Session()->get("id");
-        return $this->hasMany(Menu::class,'menu_app_id')->select('menu_app.*','roles.name as role_name','roles.url as role_url')->leftJoin('roles','menu_app.id_role','roles.id')->leftJoin('user_role','user_role.id_role','roles.id')->leftJoin('users','user_role.id_user','users.id')->where('users.id',$id)->where('user_role.allow_view',1)->orderBy('order_sort')->with('Menus');
+        $menu = $this->select('menu_app.*,roles.name as role_name,roles.url as role_url')->join('roles','menu_app.id_role = roles.id','left')->join('user_role','user_role.id_role = roles.id','left')->join('users','user_role.id_user = users.id','left')->where('users.id',Session()->get("id"))->where("menu_app.menu_app_id",$idParent)->where('user_role.allow_view',1)->get()->getResult();
+        $arr = Array();
+        foreach($menu as $key=>$item)
+		{
+            $item->child = $this->Recursion($item->id);
+			$arr[] = $item;
+        }
+        return $arr;
     }
 }

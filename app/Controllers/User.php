@@ -7,10 +7,11 @@ class User extends Controller
 {
     public function index()
     {
-        //include helper form
-        helper(['form']);
-        $data = [];
-        echo view('register', $data);
+        $model = new MenuModel();
+		$menu= $model->Recursion(null);
+		Session()->set("menuapp",$menu);
+		Session()->set("pagename","User");
+		return view('appdashboard/index');
     }
  
     public function save()

@@ -1,6 +1,6 @@
 <?php namespace App\Controllers;
 use App\Models\MenuModel;
-class Home extends BaseController
+class GroupLevel extends BaseController
 {
 	public function index()
 	{
