@@ -7,7 +7,7 @@ class Role extends BaseController
 		$model = new MenuModel();
 		$menu= $model->Recursion(null);
 		Session()->set("menuapp",$menu);
-		Session()->set("pagename","Home");
+		Session()->set("pagename","Role Master");
 		return view('appdashboard/index');
 	}
 	public function add()

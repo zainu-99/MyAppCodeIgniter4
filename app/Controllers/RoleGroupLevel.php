@@ -7,7 +7,7 @@ class RoleGroupLevel extends BaseController
 		$model = new MenuModel();
 		$menu= $model->Recursion(null);
 		Session()->set("menuapp",$menu);
-		Session()->set("pagename","Home");
+		Session()->set("pagename","Role Group");
 		return view('appdashboard/index');
 	}
 	public function add()

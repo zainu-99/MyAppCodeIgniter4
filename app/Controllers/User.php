@@ -11,7 +11,7 @@ class User extends Controller
         $model = new MenuModel();
 		$menu= $model->Recursion(null);
 		Session()->set("menuapp",$menu);
-		Session()->set("pagename","User");
+		Session()->set("pagename","User Data");
 		return view('appdashboard/index');
     }
     public function add()

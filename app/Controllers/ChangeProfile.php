@@ -7,7 +7,7 @@ class ChangeProfile extends BaseController
 		$model = new MenuModel();
 		$menu= $model->Recursion(null);
 		Session()->set("menuapp",$menu);
-		Session()->set("pagename","Home");
+		Session()->set("pagename","Change Profile");
 		return view('appdashboard/index');
 	}
 	public function edit()
