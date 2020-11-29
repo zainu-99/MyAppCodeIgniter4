@@ -5,6 +5,7 @@
 <div class="card-header"><strong>ADD DATA</strong></div>
 <div class="card-body">
                         <form role="form" method="POST" action="">
+                            <?= csrf_field() ?>
                             <div class="form-group" style="display:">
                                 <label>User ID :</label>
                                 <input type="text" required="" class="form-control" name="userid" value="" placeholder=""/>
@@ -38,7 +39,7 @@
                             <div class="form-group" style="display:">      
                                 <label for="feature_image">Photo</label>
                                 <input type="text" id="feature_image" readonly name="photo" value="">
-                                <a href="" class="popup_selector" data-url="{{ asset($public.'') }}/elfinder/popup/" data-inputid="feature_image">Select Image</a>
+                                <a href="" class="popup_selector" data-url="{<?= base_url() ?>/elfinder/popup/" data-inputid="feature_image">Select Image</a>
                             </div>
                             <div class="form-group" style="display:">
                                 <label>Password :</label>

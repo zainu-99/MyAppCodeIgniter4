@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <?= csrf_meta() ?>
   <title>Dashboar Admin</title>
   <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?=base_url($public.'AdminLTE');?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -81,7 +81,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">        
          <?=$this->include('layout/navmenu')?>
           <li class="nav-item">
-            <a href="<?=base_url().$public."/login/logout"?>"  class="nav-link">
+            <a href="<?=base_url().'/'.$public."login/logout"?>"  class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout           

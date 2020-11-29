@@ -40,8 +40,8 @@ foreach($list as $item)
 {
     $routes->get($item->url.'', $item->controller.'::index');
     $routes->add($item->url.'/add', $item->controller.'::add');
-    $routes->add($item->url.'/edit/{id}', $item->controller.'::edit');
-    $routes->add($item->url.'/delete/{id}', $item->controller.'::delete');
+    $routes->add($item->url.'/edit/(:num)', $item->controller.'::edit/$1');
+    $routes->add($item->url.'/delete/(:num)', $item->controller.'::delete/$1');
     $routes->add($item->url.'/print', $item->controller.'::print');
     $routes->add($item->url.'/custom', $item->controller.'::custom');
 }

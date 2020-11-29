@@ -43,8 +43,8 @@
                             <a title="reset password to admin" class="btn btn-xs btn-warning text-light" onclick="resetPassword(<?=$item->id?>);" ><i class="fas fa-key"></i></a>
                             <a title="set user access" class="btn btn-xs btn-info text-light" href="<?=current_url().'/useraccess/'.$item->id?>"><i class="fas fa-shield-alt"></i></a>
                             <a title="set user group" class="btn btn-xs btn-warning text-light" href="<?= current_url().'/usergrouplevel/'.$item->id?>"><i class="fas fa-layer-group"></i></a>
-                            <?=$this->include('layout/action/edit-button')?>
-                            <?=$this->include('layout/action/delete-button')?>
+                            <?=$this->include('layout/action/edit-button',["id"=>$item->id,"btnname" => ""],true)?>
+                            <?=$this->include('layout/action/delete-button',["id"=>$item->id,"btnname" => ""],true)?>
                         </td>
                     </tr>
                     <?php
