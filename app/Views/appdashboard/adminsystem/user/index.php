@@ -1,9 +1,9 @@
-<?= $this->include('layouts/action/template.php') ?> 
-
+<?= $this->extend('layout/template') ?>
+<?= $this->section('content') ?>
 <div class="card-header">
     <br/>
     <h3 class="card-title">
-       <?= $this->include('layouts/action/add-button.php') ?> 
+      <?=$this->include('layout/action/add-button',["btnname"=>"Add User"],true)?>
     </h3>
     <br/>
 </div>
@@ -23,7 +23,34 @@
                       <td>Updated At</td>
                       <td>Action</td>
                   </tr>
-              </thead>            
+              </thead>
+               <tbody>
+                    <?php
+                    foreach($list as $key=>$item)
+                    {
+                    ?>
+                    <tr>
+                        <td><?=$key+1?></td>
+                        <td nowrap><?=$item->userid?></td>
+                        <td nowrap><?=$item->name?></td>
+                        <td nowrap><?=$item->email?></td>
+                        <td nowrap><?=$item->no_hp?></td>
+                        <td nowrap><?=$item->address?></td>
+                        <td><?=$item->gender == '0'?'Female':'Male' ?></td>
+                        <td nowrap><?=$item->created_at?></td>
+                        <td nowrap><?=$item->updated_at?></td>
+                        <td style="width: 237px" nowrap>
+                            <a title="reset password to admin" class="btn btn-xs btn-warning text-light" onclick="resetPassword(<?=$item->id?>);" ><i class="fas fa-key"></i></a>
+                            <a title="set user access" class="btn btn-xs btn-info text-light" href="<?=current_url().'/useraccess/'.$item->id?>"><i class="fas fa-shield-alt"></i></a>
+                            <a title="set user group" class="btn btn-xs btn-warning text-light" href="<?= current_url().'/usergrouplevel/'.$item->id?>"><i class="fas fa-layer-group"></i></a>
+                            <?=$this->include('layout/action/edit-button')?>
+                            <?=$this->include('layout/action/delete-button')?>
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+              </tbody>
           </table>
         </div>
 </div>
@@ -35,9 +62,9 @@
         if (r == true) {
             $.ajax({
                 type:'POST',
-                url:'{{Request::url()}}/edit/' + iduser,
+                url:'<?=current_url()?>/edit/' + iduser,
                 data:{ 
-                _token: '{{ csrf_token() }}', 
+                _token: '<?= csrf_token() ?>', 
                 id_user:iduser,
                 reset_pass:'reset_pass',
                 },
@@ -50,10 +77,8 @@
      function alertDelete(id) {
         var r = confirm("Are You Sure Want To Delete?");
         if (r == true) {
-            window.location = "{{Request::url()}}/delete/" + id;
+            window.location = "<?=current_url()?>/delete/" + id;
         }
-    }
-     $(document).ready(function() {
-      
-     });
+    }  
     </script>
+<?= $this->endSection() ?>
