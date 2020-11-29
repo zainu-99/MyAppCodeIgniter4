@@ -18,16 +18,4 @@ class RoleGroupLevel extends BaseController
 	{
 		
 	}
-	public function delete()
-	{
-		
-	}
-	public function print()
-	{
-		
-	}
-	public function custom()
-	{
-		
-	}
 }

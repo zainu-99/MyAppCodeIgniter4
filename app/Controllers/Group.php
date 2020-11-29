@@ -22,12 +22,4 @@ class Group extends BaseController
 	{
 		
 	}
-	public function print()
-	{
-		
-	}
-	public function custom()
-	{
-		
-	}
 }

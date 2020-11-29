@@ -1,6 +1,6 @@
 <?php namespace App\Controllers;
 use App\Models\MenuModel;
-class Menu extends BaseController
+class MenuApp extends BaseController
 {
 	public function index()
 	{
@@ -19,14 +19,6 @@ class Menu extends BaseController
 		
 	}
 	public function delete()
-	{
-		
-	}
-	public function print()
-	{
-		
-	}
-	public function custom()
 	{
 		
 	}

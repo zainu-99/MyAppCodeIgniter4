@@ -18,16 +18,4 @@ class UserRole extends BaseController
 	{
 		
 	}
-	public function delete()
-	{
-		
-	}
-	public function print()
-	{
-		
-	}
-	public function custom()
-	{
-		
-	}
 }

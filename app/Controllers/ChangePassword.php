@@ -10,23 +10,7 @@ class ChangePassword extends BaseController
 		Session()->set("pagename","Home");
 		return view('appdashboard/index');
 	}
-	public function add()
-	{
-
-	}
 	public function edit()
-	{
-		
-	}
-	public function delete()
-	{
-		
-	}
-	public function print()
-	{
-		
-	}
-	public function custom()
 	{
 		
 	}

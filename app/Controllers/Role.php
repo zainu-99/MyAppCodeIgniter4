@@ -22,12 +22,4 @@ class Role extends BaseController
 	{
 		
 	}
-	public function print()
-	{
-		
-	}
-	public function custom()
-	{
-		
-	}
 }
