@@ -2,7 +2,7 @@
  
 use CodeIgniter\Model;
 
-class RoleGroupLevel extends Model
+class RoleGroupLevelModel extends Model
 {
     protected $table = "role_group_level";
 }

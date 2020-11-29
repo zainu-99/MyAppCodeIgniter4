@@ -1,7 +1,7 @@
 <?php namespace App\Models;
  
 use CodeIgniter\Model;
-class GroupLevel extends Model
+class GroupLevelModel extends Model
 {
     protected $table = "group_level";
 

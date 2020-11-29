@@ -73,7 +73,7 @@
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">          
-        
+         <?php $this->include('layout/navmenu')?>
           <li class="nav-item">
             <a href="<?=base_url()."/login/logout"?>"  class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
