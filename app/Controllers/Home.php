@@ -10,24 +10,4 @@ class Home extends BaseController
 		Session()->set("pagename","Dashboard");
 		return view('appdashboard/index');
 	}
-	public function add()
-	{
-
-	}
-	public function edit()
-	{
-		
-	}
-	public function delete()
-	{
-		
-	}
-	public function print()
-	{
-		
-	}
-	public function custom()
-	{
-		
-	}
 }

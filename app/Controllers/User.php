@@ -9,10 +9,6 @@ class User extends Controller
     {
         $this->model = new UserModel();
     }
-    public function apigetusers()
-    {
-        //return Datatables::of(User::selectRaw('*')->get())->make(true);
-    }
     public function index()
     {	
 		Session()->set("pagename","Menu Master");
@@ -32,14 +28,15 @@ class User extends Controller
                 'address' => $this->request->getPost('address'),
                 'gender' => $this->request->getPost('gender'),
                 'status' => 1,
-                'avatar' => $this->request->getPost('avatar'),
+                'avatar' => $this->request->getPost('photo'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => null,
                 'remember_token' => null,
                 'password' => password_hash($this->request->getPost('password'),PASSWORD_DEFAULT)
             ];
             $this->model->save($data);
-            return redirect()->to(current_url().'/..');
+            Session()->setFlashdata('msg', 'Data was be saved');
+            return redirect()->to(current_url());
        }
     }
     public function edit($id=null)
@@ -60,11 +57,12 @@ class User extends Controller
                     'no_hp' => $this->request->getPost('no_hp'),
                     'address' => $this->request->getPost('address'),
                     'gender' => $this->request->getPost('gender'),
-                    'avatar' => $this->request->getPost('avatar'),
+                    'avatar' => $this->request->getPost('photo'),
                     'created_at' => null,
                 ];
                 $this->model->update(['id' => $id],$data);
-                return redirect()->to(current_url()."/../..");
+                Session()->setFlashdata('msg', 'Data was be saved');
+                return redirect()->to(current_url());
             }
         }
         else
@@ -78,8 +76,9 @@ class User extends Controller
     }
     public function delete($id=null)
     {
+        $back = current_url()."/../..";
         $this->model->delete(['id' => $id]);
-        return redirect()->to(current_url()."/../..");
+        return redirect()->to(base_url(current_url().'/../..'));
     }  
 }
  
