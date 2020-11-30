@@ -41,15 +41,13 @@ class User extends Controller
     }
     public function edit($id=null)
     {
-        if(is_null($this->request->getPost('reset_pass')))
+        if(is_null($this->request->getPost('submit')))
         {
-            if(is_null($this->request->getPost('submit')))
-            {
                     $item = $this->model->where('id',$id)->get()->getRow();
                     return view("appdashboard/adminsystem/user/edit", ["item"=>$item]);
-            }
-            else
-            {
+        }
+        else
+        {
                 $data = [
                     'userid' => $this->request->getPost('userid'),
                     'name' => $this->request->getPost('name'),
@@ -63,15 +61,6 @@ class User extends Controller
                 $this->model->update(['id' => $id],$data);
                 Session()->setFlashdata('msg', 'Data was be saved');
                 return redirect()->to(current_url());
-            }
-        }
-        else
-        {
-            $data = [
-                'password' => password_hash("admin",PASSWORD_DEFAULT)
-            ];
-            $this->model->update($data,['id' => $id]);
-            return "Success";
         }
     }
     public function delete($id=null)
@@ -79,6 +68,14 @@ class User extends Controller
         $back = current_url()."/../..";
         $this->model->delete(['id' => $id]);
         return redirect()->to(base_url(current_url().'/../..'));
+    }  
+    public function resetpassword($iduser)
+    {
+        $data = [
+            'password' => password_hash("admin",PASSWORD_DEFAULT)
+        ];
+        $this->model->set($data)->where('id',$iduser)->update();
+        return "Success";
     }  
 }
  

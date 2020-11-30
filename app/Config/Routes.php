@@ -38,13 +38,14 @@ $model = new RoleModel();
 $list = $model->select('roles.url,roles.controller,roles.name,user_role.id')->where('url is not',null)->join('user_role','user_role.id_role=roles.id','left')->where('user_role.allow_view',1)->join('users','users.id=user_role.id_user','left')->get()->getResult();
 foreach($list as $item)
 {
-    $routes->get($item->url.'', $item->controller.'::index');
-    $routes->add($item->url.'/add', $item->controller.'::add');
+    $routes->get($item->url.'', $item->controller.'::index/$1');
+    $routes->add($item->url.'/add', $item->controller.'::add/$1');
     $routes->add($item->url.'/edit/(:num)', $item->controller.'::edit/$1');
     $routes->add($item->url.'/delete/(:num)', $item->controller.'::delete/$1');
     $routes->add($item->url.'/print', $item->controller.'::print');
     $routes->add($item->url.'/custom', $item->controller.'::custom');
 }
+$routes->add('/appdashboard/adminsystem/user/resetpassword/(:num)', 'User::resetpassword/$1');
 
 /**
  * --------------------------------------------------------------------

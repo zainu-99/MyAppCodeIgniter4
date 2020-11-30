@@ -1,56 +1,52 @@
 <?php namespace App\Controllers;
-use App\Models\MenuModel;
+use App\Models\RoleModel;
+use App\Models\RoleGroupLevelModel;
 class RoleGroupLevel extends BaseController
 {
 	public function __construct()
     {
-        $this->model = new MenuModel();
+        $this->role = new RoleModel();
+        $this->model = new RoleGroupLevelModel();
     }
-	public function index()
+	public function index($id)
     {	
-		Session()->set("pagename","Menu Master");
-		$data['list']= $this->model->get()->getResult();
-		return view('appdashboard/adminsystem/user/index',$data);
+		Session()->set("pagename","Role Group");
+		$data['list']= $this->role->select("roles.*,b.isview,b.isadd,b.isedit,b.isdelete,b.isprint,b.iscustom")->join("(select * from role_group_level where id_group_level='".$id."') as b","b.id_role=roles.id","left")->orderby("url")->orderby("name")->get()->getResult();
+		return view('appdashboard/adminsystem/grouplevel/rolegroup/index',$data);
     }
-    public function add()
+    public function add($idgroup)
     {
-       if(is_null($this->request->getPost('submit'))) return view("appdashboard/adminsystem/user/add");
-       else
+       $is_exist = $this->model->where('id_group_level',$idgroup)->where('id_role',$this->request->getPost('id_role'))->countAllResults();
+       if($is_exist==0)
        {
             $data = [
-                'name' => $this->request->getPost('name'),
-                'note' => $this->request->getPost('email'),
+                'id_group_level' => $idgroup,
+                'id_role' => $this->request->getPost('id_role'),
+                'isview' =>  $this->request->getPost('isview'),
+                'isadd' =>  $this->request->getPost('isadd'),
+                'isedit' =>  $this->request->getPost('isedit'),
+                'isdelete' =>  $this->request->getPost('isdelete'),
+                'isprint' =>  $this->request->getPost('isprint'),
+                'iscustom' =>  $this->request->getPost('iscustom'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => null
             ];
             $this->model->save($data);
-            Session()->setFlashdata('msg', 'Data was be saved');
-            return redirect()->to(current_url());
+           return "insert";
        }
-    }
-    public function edit($id=null)
-    {
-        if(is_null($this->request->getPost('submit')))
-        {
-            $item = $this->model->where('id',$id)->get()->getRow();
-            return view("appdashboard/adminsystem/user/edit", ["item"=>$item]);
-        }
-        else
-        {
+       else
+       {
             $data = [
-                    'name' => $this->request->getPost('name'),
-					'note' => $this->request->getPost('email'),
-					'updated_at' =>date("Y-m-d H:i:s")
+                'isview' =>  $this->request->getPost('isview'),
+                'isadd' =>  $this->request->getPost('isadd'),
+                'isedit' =>  $this->request->getPost('isedit'),
+                'isdelete' =>  $this->request->getPost('isdelete'),
+                'isprint' =>  $this->request->getPost('isprint'),
+                'iscustom' =>  $this->request->getPost('iscustom'),
+                'updated_at' => date("Y-m-d H:i:s")
             ];
-            $this->model->update(['id' => $id],$data);
-            Session()->setFlashdata('msg', 'Data was be saved');
-            return redirect()->to(current_url());
-        }
-    }
-    public function delete($id=null)
-    {
-        $back = current_url()."/../..";
-        $this->model->delete(['id' => $id]);
-        return redirect()->to(base_url(current_url().'/../..'));
-    }
+            $this->model->set($data)->where('id_group_level',$idgroup)->where('id_role',$this->request->getPost('id_role'))->update();
+            return "update";
+       }
+    }  
 }

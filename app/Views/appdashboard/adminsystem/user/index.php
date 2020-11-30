@@ -56,20 +56,23 @@
 </div>
     <script>
       function resetPassword(iduser) 
-      {
-          
+      {        
         var r = confirm("Are You Sure Want To Reset password?");
         if (r == true) {
             $.ajax({
                 type:'POST',
-                url:'<?=current_url()?>/edit/' + iduser,
+                url:'<?=current_url()?>/resetpassword/' + iduser,
                 data:{ 
-                _token: '<?= csrf_token() ?>', 
+                <?= csrf_token() ?>: '<?= csrf_hash() ?>', 
                 id_user:iduser,
                 reset_pass:'reset_pass',
                 },
                 success:function(data){      
                     alert(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                 alert(xhr.responseText);
+                 alert(thrownError);
                 }
             }); 
         }

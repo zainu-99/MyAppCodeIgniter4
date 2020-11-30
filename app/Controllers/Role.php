@@ -8,7 +8,7 @@ class Role extends BaseController
     }
 	public function index()
     {	
-		Session()->set("pagename","Menu Master");
+		Session()->set("pagename","Role Master");
 		$data['list']= $this->model->orderby("url")->get()->getResult();
 		return view('appdashboard/masterdata/role/index',$data);
     }
