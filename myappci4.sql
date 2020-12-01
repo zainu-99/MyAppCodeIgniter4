@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2020 pada 13.37
+-- Waktu pembuatan: 01 Des 2020 pada 02.28
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myapp`
+-- Database: `myappci4`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`, `note`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Admin', '2020-03-07 06:47:22', '2020-03-06 23:47:22'),
+(1, 'Admin', 'Admin', '2020-11-30 06:32:36', '2020-11-29 17:32:36'),
 (2, 'Programmer', 'Programmer', '2020-03-07 06:47:34', '2020-03-06 23:47:34'),
 (3, 'Content Writter', 'Content Writter', '2020-03-06 23:47:51', '2020-03-06 23:47:51'),
 (4, 'Editor', 'Editor', '2020-03-10 06:23:18', '2020-03-09 23:23:18'),
@@ -66,11 +66,10 @@ CREATE TABLE `group_level` (
 --
 
 INSERT INTO `group_level` (`id`, `id_group`, `group_level_id`, `note`, `created_at`, `updated_at`) VALUES
-(19, 1, NULL, 'Admin', '2020-11-26 03:14:24', '2020-11-25 20:14:24'),
-(20, 2, NULL, 'Programer', '2020-03-10 06:24:24', '2020-03-09 23:24:24'),
-(21, 3, NULL, 'Content Writter', '2020-03-08 04:34:25', '2020-03-07 21:34:25'),
+(19, 1, NULL, 'Admin', '2020-11-30 09:22:17', '2020-11-30 02:22:17'),
+(21, 3, NULL, 'Content Writter', '2020-12-01 01:20:09', '2020-11-30 18:20:09'),
 (22, 4, NULL, 'Editor', '2020-03-07 14:23:43', '2020-03-07 07:23:43'),
-(24, 1, NULL, NULL, '2020-11-25 22:19:13', '2020-11-25 22:19:13');
+(24, 2, NULL, 'Programmer', '2020-12-01 01:20:23', '2020-11-30 18:20:23');
 
 -- --------------------------------------------------------
 
@@ -127,16 +126,16 @@ CREATE TABLE `menu_app` (
 --
 
 INSERT INTO `menu_app` (`id`, `id_role`, `menu_text`, `menu_app_id`, `icon`, `order_sort`, `created_at`, `updated_at`) VALUES
-(41237, 2, 'Admin System', NULL, '<i class=\"nav-icon fas fa-users-cog\"></i>', 1, '2020-03-06 20:25:25', '2020-03-06 13:25:25'),
-(41243, 8, 'Users', 41237, '<i class=\"nav-icon far fas fa-users\"></i>', 1, '2020-11-26 02:38:28', '2020-11-25 19:38:28'),
+(41237, 2, 'Admin System', NULL, '<i class=\"nav-icon fas fa-users-cog\"></i>', 1, '2020-11-30 07:22:47', '2020-11-30 00:22:47'),
+(41243, 8, 'Users', 41237, '<i class=\"nav-icon far fas fa-users\"></i>', 1, '2020-11-30 07:26:11', '2020-11-30 00:26:11'),
 (41244, 9, 'Group', 41247, '<i class=\"nav-icon fas fa-layer-group\"></i>', 1, '2020-11-26 06:35:43', '2020-11-25 23:35:43'),
 (41245, 10, 'Roles', 41247, '<i class=\"nav-icon fas fa-tag\"></i>', 2, '2020-11-26 02:33:29', '2020-11-25 19:33:29'),
-(41246, 11, 'Menu', 41247, '<i class=\"nav-icon fas fa-chevron-circle-down\"></i>', 3, '2020-11-26 02:33:43', '2020-11-25 19:33:43'),
+(41246, 11, 'Menu', 41247, '<i class=\"nav-icon fas fa-chevron-circle-down\"></i>', 3, '2020-11-30 07:42:54', '2020-11-29 18:42:54'),
 (41247, 16, 'Master Data', NULL, '<i class=\"nav-icon fas fa-database\"></i>', 2, '2020-11-26 02:33:14', '2020-11-25 19:33:14'),
-(41250, 13, 'Group', 41237, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-25 19:37:18', '2020-11-25 19:37:18'),
+(41250, 13, 'Group', 41237, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-30 07:42:41', '2020-11-29 18:42:41'),
 (41251, 17, 'Setting', NULL, '<i class=\"nav-icon fas fa-cog\"></i>', 3, '2020-11-28 12:34:24', '2020-11-28 05:34:24'),
 (41252, 18, 'Change Profile', 41251, '<i class=\"nav-icon fas fa-circle\"></i>', 1, '2020-11-28 05:34:45', '2020-11-28 05:34:45'),
-(41253, 19, 'Change Password', 41251, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-28 05:35:04', '2020-11-28 05:35:04');
+(41253, 19, 'Change Password', 41251, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-30 09:49:18', '2020-11-29 20:49:18');
 
 -- --------------------------------------------------------
 
@@ -197,16 +196,16 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `note`, `url`, `controller`, `accessview`, `accessadd`, `accessedit`, `accessdelete`, `accessprint`, `accesscustom`, `created_at`, `updated_at`) VALUES
-(2, 'Admin System', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-26 02:25:51', '2020-11-25 19:25:51'),
-(8, 'User', '-', '/appdashboard/adminsystem/user', 'User', 1, 1, 1, 1, 1, 0, '2020-11-26 02:23:15', '2020-11-25 19:23:15'),
+(2, 'Admin System', '', NULL, '', 1, 0, 0, 0, 0, 0, '2020-11-30 08:01:52', '2020-11-29 19:01:52'),
+(8, 'User', '', '/appdashboard/adminsystem/user', 'User', 1, 1, 1, 1, 1, 0, '2020-11-30 09:48:36', '2020-11-29 20:48:36'),
 (9, 'Group', NULL, '/appdashboard/masterdata/group', 'Group', 1, 1, 1, 1, 0, 0, '2020-11-26 02:23:33', '2020-11-25 19:23:33'),
 (10, 'Role', NULL, '/appdashboard/masterdata/role', 'Role', 1, 1, 1, 1, 0, 0, '2020-11-26 03:29:14', '2020-11-25 20:29:14'),
 (11, 'Menu', NULL, '/appdashboard/masterdata/menu', 'MenuApp', 1, 0, 0, 0, 0, 0, '2020-11-26 02:25:56', '2020-11-25 19:25:56'),
-(12, 'User Access', NULL, '/appdashboard/adminsystem/user/useraccess/{iduser}', 'UserRole', 1, 0, 0, 0, 0, 0, '2020-11-26 03:50:51', '2020-11-25 20:49:54'),
+(12, 'User Access', '', '/appdashboard/adminsystem/user/useraccess/(:num)', 'UserRole', 1, 0, 0, 0, 0, 0, '2020-12-01 01:19:34', '2020-11-30 12:19:34'),
 (13, 'Group Level', NULL, '/appdashboard/adminsystem/grouplevel', 'GroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:29:03', '2020-11-25 20:29:03'),
-(14, 'User Group Level', NULL, '/appdashboard/adminsystem/user/usergrouplevel/{iduser}', 'UserGroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:51:27', '2020-11-25 20:51:27'),
-(15, 'Role Group Level', NULL, '/appdashboard/adminsystem/grouplevel/rolegrouplevel/{idgroup}', 'RoleGroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:51:10', '2020-11-25 20:51:10'),
-(16, 'Master Data', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-25 19:24:45', '2020-11-25 19:24:45'),
+(14, 'User Group Level', '', '/appdashboard/adminsystem/user/usergrouplevel/(:num)', 'UserGroupLevel', 1, 0, 0, 0, 0, 0, '2020-12-01 01:19:40', '2020-11-30 12:19:40'),
+(15, 'Role Group Level', '', '/appdashboard/adminsystem/grouplevel/rolegrouplevel/(:num)', 'RoleGroupLevel', 1, 0, 0, 0, 0, 0, '2020-12-01 01:19:26', '2020-11-30 12:19:26'),
+(16, 'Master Data', '', NULL, '', 1, 0, 0, 0, 0, 0, '2020-11-30 08:02:03', '2020-11-29 19:02:03'),
 (17, 'Setting', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-28 05:32:00', '2020-11-28 05:32:00'),
 (18, 'Change Profile', NULL, '/appdashboard/setting/changeprofile', 'ChangeProfile', 1, 0, 1, 0, 0, 0, '2020-11-28 05:33:33', '2020-11-28 05:33:33'),
 (19, 'Change Password', NULL, '/appdashboard/setting/changepassword', 'ChangePassword', 1, 0, 1, 0, 0, 0, '2020-11-28 05:33:52', '2020-11-28 05:33:52');
@@ -293,7 +292,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `userid`, `name`, `email`, `email_verified_at`, `no_hp`, `address`, `avatar`, `gender`, `status`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '20201127001', 'admin', 'admin@admin.com', NULL, '-', '-', 'files\\users photo\\IMG_20200215_203123_622-min.jpg', 1, 1, '$2y$10$f0PDApCPYD8aEiqCCXIsTueoWvasYI/eTYuMC5t52gwcApgqdO1VK', '0q2SLTBDw5EXskrjklRTOU8FiOLE1w0NNHQeXgLtxCJRcLWuuNRXGevI7bkk', '2020-03-03 01:16:43', '2020-11-28 05:37:04');
+(1, '20201127001', 'admin', 'admin@admin.com', NULL, '-', '-', '', 1, 1, '$2y$10$8E.EluZYlzB0TfTtgcQ3GO/MkO3okvjSmjjdXo.CBOI32./kk6c12', '2ejrDv2uPzTxa9ONbQ6mVGNsl7KIm9cmhzeIgB2s9xPFugASZQti2ypGamHa', NULL, '2020-11-30 18:19:03');
 
 -- --------------------------------------------------------
 
@@ -314,8 +313,7 @@ CREATE TABLE `user_group_level` (
 --
 
 INSERT INTO `user_group_level` (`id`, `id_user`, `id_group_level`, `created_at`, `updated_at`) VALUES
-(36, 1, 19, '2020-03-08 01:26:11', '2020-03-08 01:26:11'),
-(43, 1, 20, '2020-11-25 23:07:20', '2020-11-25 23:07:20');
+(36, 1, 19, '2020-03-08 01:26:11', '2020-03-08 01:26:11');
 
 -- --------------------------------------------------------
 
@@ -343,7 +341,7 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `id_user`, `id_role`, `allow_view`, `allow_add`, `allow_edit`, `allow_delete`, `allow_print`, `allow_custom`, `created_at`, `updated_at`) VALUES
 (3, 1, 8, 1, 1, 1, 1, 1, NULL, '0000-00-00 00:00:00', '2020-11-25 23:23:59'),
-(5, 1, 2, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 2, 1, 0, 0, 0, 0, '0', '0000-00-00 00:00:00', '2020-11-30 12:21:37'),
 (7, 1, 12, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, 1, 9, 1, 1, 1, 1, 0, NULL, '0000-00-00 00:00:00', '2020-11-25 23:22:53'),
 (13, 1, 10, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -460,13 +458,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `group_level`
 --
 ALTER TABLE `group_level`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_app`
@@ -496,7 +494,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `role_group_level`
@@ -514,13 +512,13 @@ ALTER TABLE `setting_app`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_group_level`
 --
 ALTER TABLE `user_group_level`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
