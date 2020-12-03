@@ -35,15 +35,21 @@ $routes->get('/login', 'Login::index');
 $routes->get('/login/auth', 'Login::auth');
 use App\Models\RoleModel;
 $model = new RoleModel();
-$list = $model->select('roles.url,roles.controller,roles.name,user_role.id')->where('url is not',null)->join('user_role','user_role.id_role=roles.id','left')->where('user_role.allow_view',1)->join('users','users.id=user_role.id_user','left')->get()->getResult();
+$list = $model->select('roles.url,roles.controller,roles.name,user_role.*')->join('user_role','user_role.id_role=roles.id','left')->where('url is not',null)->where('id_user =',Session()->get("id"))->get()->getResult();
 foreach($list as $item)
 {
-    $routes->get($item->url.'', $item->controller.'::index/$1');
-    $routes->add($item->url.'/add', $item->controller.'::add/$1');
-    $routes->add($item->url.'/edit/(:num)', $item->controller.'::edit/$1');
-    $routes->add($item->url.'/delete/(:num)', $item->controller.'::delete/$1');
-    $routes->add($item->url.'/print', $item->controller.'::print');
-    $routes->add($item->url.'/custom', $item->controller.'::custom');
+    if($item->allow_view ==1)
+        $routes->get($item->url.'', $item->controller.'::index/$1',['filter' => 'auth:'.$item->id_role]);
+    if($item->allow_add ==1)
+        $routes->add($item->url.'/add', $item->controller.'::add/$1',['filter' => 'auth']);
+    if($item->allow_edit ==1)
+    $routes->add($item->url.'/edit/(:num)', $item->controller.'::edit/$1',['filter' => 'auth']);
+        if($item->allow_delete ==1)
+    $routes->add($item->url.'/delete/(:num)', $item->controller.'::delete/$1',['filter' => 'auth']);
+        if($item->allow_print ==1)
+    $routes->add($item->url.'/print', $item->controller.'::print',['filter' => 'auth']);
+        if($item->allow_custom ==1)
+    $routes->add($item->url.'/custom', $item->controller.'::custom',['filter' => 'auth']);
 }
 $routes->add('/appdashboard/adminsystem/user/resetpassword/(:num)', 'User::resetpassword/$1');
 
