@@ -35,7 +35,7 @@
                         <?php
                           foreach($groupLevels as $key=>$groupLevel)
                           {
-                              echo '<option  value="'.$groupLevel->id.'">'.$groupLevel->name.'-'.$groupLevel->note.'</option>';
+                            echo $this->include('appdashboard/adminsystem/grouplevel/option',['parent' => $groupLevel,'sparator'=>''],true);
                           }
                         ?>
                       </select>

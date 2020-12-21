@@ -31,17 +31,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Parent :</label>
-                                <div class="">
                                 <select class=""  name="id_parent" style="width: 100%;height:39px">
                                 <option value="-">No Parent</option>
                                 <?php
-                                foreach($parents as $key=>$parent)
+                                foreach($parents as $key=>$itm)
                                 {
-                                    echo '<option '. (($parent->id == $item->menu_app_id) ? ' selected ':' ') . ' value="'.$parent->id.'">'.$parent->menu_text.'</option>';
+                                    echo $this->include('appdashboard/masterdata/menu/option',['parent' => $itm,'sparator'=>'',"itemid"=>$item->menu_app_id],true);
                                 }
                                 ?>
                                 </select>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Icon :</label>

@@ -17,7 +17,7 @@ class MenuApp extends BaseController
     public function add()
     {
        if(is_null($this->request->getPost('submit'))){
-            $data['parents']= $this->model->get()->getResult();
+            $data['parents']= $this->model->Recursion(null);
             $data['roles']= $this->role->orderby('name')->get()->getResult();
             return view("appdashboard/masterdata/menu/add",$data);
        }
@@ -41,7 +41,7 @@ class MenuApp extends BaseController
     {
         if(is_null($this->request->getPost('submit')))
         {
-            $data['parents']= $this->model->where('id <> ',$id)->get()->getResult();
+            $data['parents']= $this->model->Recursion(null);
             $data['roles']= $this->role->orderby('name')->get()->getResult();
             $data['item'] = $this->model->where('id',$id)->get()->getRow();
             return view("appdashboard/masterdata/menu/edit",$data);

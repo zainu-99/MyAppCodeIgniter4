@@ -12,7 +12,7 @@ class GroupLevel extends BaseController
     {	
 		Session()->set("pagename","Menu Master");
         $data['groups']= $this->groups->get()->getResult();
-        $data['groupLevels']= $this->model->select("group_level.*,groups.name")->join("groups","groups.id = group_level.id_group","left")->get()->getResult();
+        $data['groupLevels']= $this->model->Recursion(NULL);
         $data['list'] = $this->model->Recursion(NULL);
         return view('appdashboard/adminsystem/grouplevel/index',$data);
     }

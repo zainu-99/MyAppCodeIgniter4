@@ -33,17 +33,15 @@
                             </div>          
                             <div class="form-group">
                                 <label>Parent :</label>
-                                <div class="">
                                 <select class=""  name="id_parent" style="width: 100%;height:39px">
                                 <option value="-">No Parent</option>
                                 <?php
                                 foreach($parents as $key=>$item)
                                 {
-                                    echo '<option value="'.$item->id.'">'.$item->menu_text.'</option>';
+                                    echo $this->include('appdashboard/masterdata/menu/option',['parent' => $item,'sparator'=>''],true);
                                 }
                                 ?>
                                 </select>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Icon :</label>
